@@ -1,0 +1,175 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <p class="title">Rock, Paper, or Scissors?</p>
+      <div class="box1">
+        <p id="humanScore" >0</p>
+        <p id="computerScore">0</p>
+      </div>
+      <div class="box2">
+        <p class="you">You</p>
+        <p class="computer">computer</p>
+      </div>
+      <div class="box3">
+        <p id="rock">🪨</p>
+        <p id="paper">📃</p>
+        <p id="scissors">✂️</p>
+      </div>
+      <p 
+     <div id="status"></div>
+    </div>
+  </body>
+</html>
+<style>
+  *
+  {
+    margin: 0;
+    padding: 0;
+    font-family: Sans-Serif;
+  }
+  body
+  {
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+    background-color: #161623;
+  }
+  .container
+  {
+    height: 80%;
+    width: 80%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: 1px solid white;
+    box-shadow: 0px 20px 21px 0px rgba(0,0,0,0.5);
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+    flex-direction: column;
+    gap: 5%;
+    background: linear-gradient(#161625,rgba(225,225,225,0.3));
+  }
+  .title,#status
+  {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+  }
+  .box1,.box2,.box3
+  {
+    height: 5%;
+    width: 70%;
+    background-color: ;
+    display: flex ;
+    align-items: center ;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  #humanScore,#computerScore
+  {
+    height: 80%;
+    width: 35%;
+    padding: 5px;
+    font-size: 20px;
+    color: white;
+    display: flex ;
+    align-items: center ;
+    justify-content: center;
+    background-color: ;
+  }
+   .you,.computer
+    {
+    height: 80%;
+    width: 35%;
+    padding: 5px;
+    font-size: 20px;
+    color: white;
+    display: flex ;
+    align-items: center ;
+    justify-content: center;
+    background-color: ;
+  }
+    #status
+  {
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+    flex-direction: column;
+    text-align: center;
+  }
+</style>
+<script>
+
+      
+  var humanScore = 0;
+var computerScore = 0;
+
+document.getElementById('rock').onclick = playRock;
+document.getElementById('paper').onclick = playPaper;
+document.getElementById('scissors').onclick = playScissors;
+
+function playRock() {
+  play("rock");
+}
+function playPaper() {
+  play("paper");
+}
+function playScissors() {
+  play("scissors");
+}
+
+function play(humanPlay) {
+  
+  computerPlay = getComputerPlay();
+  
+  document.getElementById('status').innerHTML = "<p>You played <strong>" + humanPlay + "</strong>. The Computer  played <strong>" + computerPlay + "</strong>.</p>";
+  
+  if(humanPlay == 'rock') {
+    if(computerPlay == 'rock') {
+      document.getElementById('status').innerHTML += "<p>You tied. :|</p>";
+    } else if (computerPlay == 'paper') {
+      document.getElementById('status').innerHTML += "<p>You lose. :(</p>";
+      computerScore++;
+    } else if (computerPlay == 'scissors') {
+      document.getElementById('status').innerHTML += "<p>You win! :)</p>";
+      humanScore++;
+    }
+  } else if (humanPlay == 'paper') {
+    if(computerPlay == 'rock') {
+      document.getElementById('status').innerHTML += "<p>You win! :)</p>";
+      humanScore++;
+    } else if (computerPlay == 'paper') {
+      document.getElementById('status').innerHTML += "<p>You tied. :|</p>";
+    } else if (computerPlay == 'scissors') {
+      document.getElementById('status').innerHTML += "<p>You lose. :(</p>";
+      computerScore++;
+    }  
+  } else if (humanPlay == 'scissors') {
+    if(computerPlay == 'rock') {
+      document.getElementById('status').innerHTML += "<p>You lose. :(</p>";
+      computerScore++;
+    } else if (computerPlay == 'paper') {
+      document.getElementById('status').innerHTML += "<p>You win! :)</p>";
+      humanScore++;
+    } else if (computerPlay == 'scissors') {
+      document.getElementById('status').innerHTML += "<p>You tied. :|</p>";
+    }  
+  }
+  
+  document.getElementById('humanScore').innerHTML = humanScore;
+  document.getElementById('computerScore').innerHTML = computerScore;
+  
+}
+
+function getComputerPlay() {
+  var plays = ['rock', 'paper', 'scissors'];
+  var play = plays[Math.floor(Math.random() * plays.length)];
+  return play;
+}
+</script>
